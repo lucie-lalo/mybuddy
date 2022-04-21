@@ -27,6 +27,10 @@ switch($uc)
         header("location: vues/v_accueilP/index.php");
         exit();
       }
+      else if($_COOKIE['role']=="admin"){
+        header("location: vues/v_accueilA/index.php");
+        exit();
+      }
     }
   case 'gestion':
     {include("controleurs/c_gestion.php");break;}

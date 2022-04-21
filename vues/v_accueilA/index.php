@@ -33,12 +33,88 @@ if($_COOKIE['role']=="eleve"){
 	<nav class="pt-10 pb-10 bg-light text-center navigation_1">
 		<div class="container px-xl-0">
 			<div class="row justify-content-center align-items-center f-16 mt-10">
-				<h1>ICI, C'est la page ADMIN !</h1>
+				<div class="mb-50 mb-lg-0 col-lg-3 text-lg-left">
+					<a href="../../index.php?uc=gestion&action=voirAccueilP" class="link img_link">
+						<img src="uploads/sanstitre1.png" alt="Logo" class="img-fluid" data-aos="fade-down" data-aos-delay="250">
+					</a>
+				</div>
+				<div class="col-lg-6" data-aos="fade-down" data-aos-delay="0">
+					<a href="#" class="link mx-15 color-main">
+					</a>
+					<a href="#" class="link mx-15 color-main">
+					</a>
+					<a href="#" class="link mx-15 color-main">
+					</a>
+					<a href="#" class="link mx-15 color-main">
+					</a>
+					<a href="#" class="mx-15 link color-main">
+						<i>
+						</i>
+					</a>
+				</div>
+				<div class="mt-20 mt-lg-0 col-lg-3 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center" data-aos="fade-down" data-aos-delay="250">
+					<a href="#" class="link mr-20 color-main">
+					</a>
+					<a href="../../index.php?uc=login&action=deconnexion" class="btn mr-20 sm action-2 f-20">
+						DÉCONNEXION
+					</a>
+				</div>
 			</div>
 		</div>
 	</nav>
+	<!-- Showcase 2 -->
+		<section class="pb-90 bg-light text-center showcase_2 pt-15">
+			<div class="container px-xl-0">
+				<div class="row justify-content-center">
+					<div class="col-xl-15 col-lg-10">
+						<h2 class="small" data-aos="fade-down" data-aos-delay="0">
+							BIENVENUE SUR LA PAGE ADMIN
+						</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-6" data-aos="fade-down" data-aos-delay="0">
+						<a href="../../index.php?uc=gestion&action=voirElevesP" class="mt-50 link img_link color-main">
+							<img src="uploads/sanstitre10.png" srcset="uploads/sanstitre10.png 2x" alt="" class="img-fluid radius10">
+						</a>
+						<a href="../../index.php?uc=gestion&action=voirElevesP" class="btn action-1 mt-20 w-230">
+							AJOUTER
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6" data-aos="fade-down" data-aos-delay="250">
+						<a href="../../index.php?uc=gestion&action=voirCoursTransmettreP" class="mt-50 link img_link color-main w-300">
+							<img src="uploads/sanstitre11.png" srcset="uploads/sanstitre11.png 2x" alt="" class="img-fluid radius10">
+						</a>
+						<a href="../../index.php?uc=gestion&action=voirCoursTransmettreP" class="btn action-1 mt-20">
+							MODIFIER
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6" data-aos="fade-down" data-aos-delay="500">
+						<a href="../../index.php?uc=gestion&action=voirPlanningP" class="mt-50 link img_link color-main h-190 w-220 pt-20">
+							<img src="uploads/sanstitre5.png" srcset="uploads/sanstitre5.png 2x" alt="" class="img-fluid radius10">
+						</a>
+						<a href="../../index.php?uc=gestion&action=voirPlanningP" class="btn action-1 mt-80">
+							SUPPRIMER
+						</a>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- forms alerts -->
+		<div class="alert alert-success alert-dismissible fixed-top alert-form-success" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			Thanks for your message!
+		</div>
+		<div class="alert alert-warning alert-dismissible fixed-top alert-form-check-fields" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			Please, fill in required fields.
+		</div>
+		<div class="alert alert-danger alert-dismissible fixed-top alert-form-error" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div class="message">An error occurred while sending data :( Please, check if your hosting supports PHP and check how to set form data sending <a href="https://designmodo.com/startup/documentation/#form-handler" target="_blank" class="link color-transparent-white">here</a>.</div>
+		</div>
 
-		<!-- gReCaptcha popup (uncomment if you need a recaptcha integration) -->
 		<!--
 		<div class="bg-dark op-8 grecaptcha-overlay"></div>
 		<div class="bg-light radius10 w-350 h-120 px-20 pt-20 pb-20 grecaptcha-popup">
