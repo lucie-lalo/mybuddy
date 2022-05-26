@@ -74,10 +74,10 @@ if($_COOKIE['role']=="eleve"){
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-sm-6" data-aos="fade-down" data-aos-delay="0">
-						<a href="../../index.php?uc=gestion&action=voirElevesP" class="mt-50 link img_link color-main">
+						<a href="../v_addMembre/index.php" class="mt-50 link img_link color-main">
 							<img src="uploads/sanstitre10.png" srcset="uploads/sanstitre10.png 2x" alt="" class="img-fluid radius10">
 						</a>
-						<a href="../../index.php?uc=gestion&action=voirElevesP" class="btn action-1 mt-20 w-230">
+						<a href="../v_addMembre/index.php" class="btn action-1 mt-20 w-230">
 							AJOUTER
 						</a>
 					</div>
@@ -90,10 +90,10 @@ if($_COOKIE['role']=="eleve"){
 						</a>
 					</div>
 					<div class="col-md-4 col-sm-6" data-aos="fade-down" data-aos-delay="500">
-						<a href="../../index.php?uc=gestion&action=voirPlanningP" class="mt-50 link img_link color-main h-190 w-220 pt-20">
+						<a href="../v_supprMembre/index.php" class="mt-50 link img_link color-main h-190 w-220 pt-20">
 							<img src="uploads/sanstitre5.png" srcset="uploads/sanstitre5.png 2x" alt="" class="img-fluid radius10">
 						</a>
-						<a href="../../index.php?uc=gestion&action=voirPlanningP" class="btn action-1 mt-80">
+						<a href="../v_supprMembre/index.php" class="btn action-1 mt-80">
 							SUPPRIMER
 						</a>
 					</div>
