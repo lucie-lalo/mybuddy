@@ -82,10 +82,10 @@ if($_COOKIE['role']=="eleve"){
 						</a>
 					</div>
 					<div class="col-md-4 col-sm-6" data-aos="fade-down" data-aos-delay="250">
-						<a href="../../index.php?uc=gestion&action=voirCoursTransmettreP" class="mt-50 link img_link color-main w-300">
+						<a href="../v_modifyMembre/index.php" class="mt-50 link img_link color-main w-300">
 							<img src="uploads/sanstitre11.png" srcset="uploads/sanstitre11.png 2x" alt="" class="img-fluid radius10">
 						</a>
-						<a href="../../index.php?uc=gestion&action=voirCoursTransmettreP" class="btn action-1 mt-20">
+						<a href="../v_modifyMembre/index.php" class="btn action-1 mt-20">
 							MODIFIER
 						</a>
 					</div>

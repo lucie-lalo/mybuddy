@@ -65,12 +65,12 @@ $pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', ''
 		</div>
 	</nav>
 	<!-- Showcase 2 -->
-	<section class="pb-90 bg-light text-center showcase_2 pt-15">
+		<section class="pb-90 bg-light text-center showcase_2 pt-15">
 			<div class="container px-xl-0">
 				<div class="row justify-content-center">
 					<div class="col-xl-15 col-lg-10">
 						<h2 class="small" data-aos="fade-down" data-aos-delay="0">
-							Voici les membres que vous pouvez supprimer
+							Voici les membres que vous pouvez modifier
 						</h2>
 						<br>
 					</div>
@@ -84,7 +84,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', ''
 							$recupUsers = $pdo->query("SELECT * FROM user WHERE role = 'admin'");
 							while($user = $recupUsers->fetch()){
 								?>
-								<p><?= $user["identite"];?> <a href="bannir.php?id=<?= $user['identifiant'];?>" style="color:red;text-decoration:none"> X </a></p>
+								<p><?= $user["identite"];?> <a href="modifier.php?id=<?= $user['identifiant'];?>" style="color:white;background-color:red;margin-left:2%"> Modifier</a></p>
 								<?php
 							}
 						?>
@@ -96,7 +96,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', ''
 							$recupUsers = $pdo->query("SELECT * FROM user WHERE role = 'pedagogue'");
 							while($user = $recupUsers->fetch()){
 								?>
-								<p><?= $user["identite"];?> <a href="bannir.php?id=<?= $user['identifiant'];?>" style="color:red;text-decoration:none"> X </a></p>
+								<p><?= $user["identite"];?> <a href="modifier.php?id=<?= $user['identifiant'];?>" style="color:white;background-color:red;margin-left:2%">  Modifier</a></p>
 								<?php
 							}
 						?>
@@ -108,7 +108,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', ''
 							$recupUsers = $pdo->query("SELECT * FROM user WHERE role = 'eleve'");
 							while($user = $recupUsers->fetch()){
 								?>
-								<p><?= $user["identite"];?> <a href="bannir.php?id=<?= $user['identifiant'];?>" style="color:red;text-decoration:none"> X </a></p>
+								<p><?= $user["identite"];?> <a href="modifierEleve.php?id=<?= $user['identifiant'];?>" style="color:white;background-color:red;margin-left:2%"> Modifier</a></p>
 								<?php
 							}
 						?>

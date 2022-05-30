@@ -1,16 +1,60 @@
-<?php 
-if($_COOKIE['role']=="eleve"){
-	header("Location:../v_accueilE/index.php");
-	exit();
-}
+<?php
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', '');
+if(isset($_GET["id"]) AND !empty($_GET["id"])){
+	$getId = $_GET["id"];
+	$recupEleve = $pdo->prepare("SELECT * FROM user WHERE identifiant = ? AND role ='eleve'");
+
+	$recupEleve->execute(array($getId));
+
+	if($recupEleve->rowCount()>0){
+
+		$modifyUser = $pdo->prepare("SELECT * FROM eleve WHERE identifiant = ?");
+		$modifyUser->execute(array($getId));
+
+		$infosUser = $modifyUser->fetch();
+
+		$nomUser = $infosUser['nom'];
+		$prenomUser = $infosUser['prenom'];
+		$handicapUser = $infosUser['handicap'];
+		$classeUser = $infosUser['classe'];
+		$amenagementUser = $infosUser['amenagement'];
+		$suiviPedaUser = $infosUser['suivis_peda'];
+
+		if(isset($_POST['envoi'])){
+			$nomSaisi = htmlspecialchars($_POST['nom']);
+			$prenomSaisi = htmlspecialchars($_POST['prenom']);
+			$handicapSaisi = htmlspecialchars($_POST['handicap']);
+			$classeSaisi = htmlspecialchars($_POST['classe']);
+			$amenagementSaisi = htmlspecialchars($_POST['amenagement']);
+			$suiviPedaSaisi = htmlspecialchars($_POST['suivis_peda']);
+
+			$identite = $prenomSaisi . " " . $nomSaisi;
+
+			$updateEleve = $pdo->prepare('UPDATE eleve SET nom = ?, prenom = ?, handicap = ?, classe = ?, amenagement = ?, suivis_peda = ? WHERE identifiant = ?');
+			$updateEleve->execute(array($nomSaisi, $prenomSaisi, $handicapSaisi, $classeSaisi, $amenagementSaisi, $suiviPedaSaisi, $getId));
+
+			$updateUser = $pdo->prepare('UPDATE user SET identite = ? WHERE identifiant = ?');
+			$updateUser->execute(array($identite,$getId));
+
+			header("Location: index.php");
+		}
+	}
+	else{
+		echo "Aucun membre n'a été trouvé";
+	}
+}
+else{
+	echo "L'identifiant n'a pas pu être récupéré";
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+	
 	<head>
 		<meta charset="utf-8" >
-		<title>My Buddy</title>
+		<title>Project</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="i/favicon.png" type="image/x-icon">
 		<!-- Google Fonts -->
@@ -32,91 +76,102 @@ $pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', ''
 	</head> 
 	<body>
 <!-- Navigation 1 -->
-	<nav class="pt-10 pb-10 bg-light text-center navigation_1">
-		<div class="container px-xl-0">
-			<div class="row justify-content-center align-items-center f-16 mt-10">
-				<div class="mb-50 mb-lg-0 col-lg-3 text-lg-left">
-					<a href="../v_accueilA/index.php" class="link img_link">
-						<img src="uploads/sanstitre1.png" alt="Logo" class="img-fluid" data-aos="fade-down" data-aos-delay="250">
-					</a>
-				</div>
-				<div class="col-lg-6" data-aos="fade-down" data-aos-delay="0">
-					<a href="#" class="link mx-15 color-main">
-					</a>
-					<a href="#" class="link mx-15 color-main">
-					</a>
-					<a href="#" class="link mx-15 color-main">
-					</a>
-					<a href="#" class="link mx-15 color-main">
-					</a>
-					<a href="#" class="mx-15 link color-main">
-						<i>
-						</i>
-					</a>
-				</div>
-				<div class="mt-20 mt-lg-0 col-lg-3 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center" data-aos="fade-down" data-aos-delay="250">
-					<a href="#" class="link mr-20 color-main">
-					</a>
-					<a href="../../index.php?uc=login&action=deconnexion" class="btn mr-20 sm action-2 f-20">
-						DÉCONNEXION
-					</a>
+
+		<nav class="pt-10 pb-10 bg-light text-center navigation_1">
+			<div class="container px-xl-0">
+				<div class="row justify-content-center align-items-center f-16 mt-10">
+					<div class="mb-50 mb-lg-0 col-lg-3 text-lg-left">
+						<a href="../v_accueilA/index.php" class="link img_link">
+							<img src="uploads/sanstitre1.png" alt="Logo" class="img-fluid" data-aos="fade-down" data-aos-delay="250">
+						</a>
+					</div>
+					<div class="col-lg-6" data-aos="fade-down" data-aos-delay="0">
+						<a href="#" class="link mx-15 color-main">
+						</a>
+						<a href="#" class="link mx-15 color-main">
+						</a>
+						<a href="#" class="link mx-15 color-main">
+						</a>
+						<a href="#" class="link mx-15 color-main">
+						</a>
+						<a href="#" class="mx-15 link color-main">
+							<i>
+							</i>
+						</a>
+					</div>
+					<div class="mt-20 mt-lg-0 col-lg-3 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center" data-aos="fade-down" data-aos-delay="250">
+						<a href="#" class="link mr-20 color-main">
+						</a>
+						<a href="../../index.php?uc=login&action=deconnexion" class="btn mr-20 sm action-2 f-20">
+							DÉCONNEXION
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	</nav>
-	<!-- Showcase 2 -->
-	<section class="pb-90 bg-light text-center showcase_2 pt-15">
+		</nav>
+	<!-- Pricing table 1 -->
+		<section class="pb-90 bg-light text-center showcase_2 pt-15">
+		<style>
+			input[type=text], select {
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			}
+
+			input[type=submit] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			}
+
+			input[type=submit]:hover {
+			background-color: #45a049;
+			}
+
+		</style>
 			<div class="container px-xl-0">
 				<div class="row justify-content-center">
 					<div class="col-xl-15 col-lg-10">
 						<h2 class="small" data-aos="fade-down" data-aos-delay="0">
-							Voici les membres que vous pouvez supprimer
+							Modification du membre
 						</h2>
 						<br>
+						<br>
+						<form method="POST" action="">
+							<label>Nom : </label>
+							<input type="text" name="nom" value="<?= $nomUser; ?>">
+							<br>
+							<label>Prénom : </label>
+							<input type="text" name="prenom" value="<?= $prenomUser; ?>">
+							<br>
+							<label>Handicap : </label>
+							<input type="text" name="handicap" value="<?= $handicapUser; ?>">
+							<br>
+							<label>Classe : </label>
+							<input type="text" name="classe" value="<?= $classeUser; ?>">
+							<br>
+							<label>Aménagement : </label>
+							<input type="text" name="amenagement" value="<?= $amenagementUser; ?>">
+							<br>
+							<label>Suivi pédagogique : </label>
+							<input type="text" name="suivis_peda" value="<?= $suiviPedaUser; ?>">
+							<br>
+							<input type="submit" name="envoi">
+						</form>
 					</div>
 				</div>
 				<br>
-				<div class="row justify-content-center">
-					<div class="col-xl-4 col-lg-2">
-						<h4>Liste des admins</h4>
-						<br>
-						<?php
-							$recupUsers = $pdo->query("SELECT * FROM user WHERE role = 'admin'");
-							while($user = $recupUsers->fetch()){
-								?>
-								<p><?= $user["identite"];?> <a href="bannir.php?id=<?= $user['identifiant'];?>" style="color:red;text-decoration:none"> X </a></p>
-								<?php
-							}
-						?>
-					</div>
-					<div class="col-xl-4 col-lg-2">
-						<h4>Liste des pédagogues</h4>
-						<br>
-						<?php
-							$recupUsers = $pdo->query("SELECT * FROM user WHERE role = 'pedagogue'");
-							while($user = $recupUsers->fetch()){
-								?>
-								<p><?= $user["identite"];?> <a href="bannir.php?id=<?= $user['identifiant'];?>" style="color:red;text-decoration:none"> X </a></p>
-								<?php
-							}
-						?>
-					</div>
-					<div class="col-xl-4 col-lg-2">
-						<h4>Liste des élèves</h4>
-						<br>
-						<?php
-							$recupUsers = $pdo->query("SELECT * FROM user WHERE role = 'eleve'");
-							while($user = $recupUsers->fetch()){
-								?>
-								<p><?= $user["identite"];?> <a href="bannir.php?id=<?= $user['identifiant'];?>" style="color:red;text-decoration:none"> X </a></p>
-								<?php
-							}
-						?>
-					</div>
-				</div>
+				
 			</div>
 		</section>
-		<!-- forms alerts -->
+		<!-- forms alerts 
 		<div class="alert alert-success alert-dismissible fixed-top alert-form-success" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			Thanks for your message!
@@ -128,8 +183,9 @@ $pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', ''
 		<div class="alert alert-danger alert-dismissible fixed-top alert-form-error" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<div class="message">An error occurred while sending data :( Please, check if your hosting supports PHP and check how to set form data sending <a href="https://designmodo.com/startup/documentation/#form-handler" target="_blank" class="link color-transparent-white">here</a>.</div>
-		</div>
+		</div>-->
 
+		<!-- gReCaptcha popup (uncomment if you need a recaptcha integration) -->
 		<!--
 		<div class="bg-dark op-8 grecaptcha-overlay"></div>
 		<div class="bg-light radius10 w-350 h-120 px-20 pt-20 pb-20 grecaptcha-popup">

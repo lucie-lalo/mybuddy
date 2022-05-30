@@ -31,7 +31,7 @@
                 <img src="uploads/sanstitre1.png" alt="Some text about this image" class="img-fluid ml-65">
                 <div class="mt-10 f-18 medium color-heading text-center" data-aos="fade-down" data-aos-delay="500">
                 
-                    Ma platefrome d'accompagnement pédagogique personnalisée
+                    Ma plateforme d'accompagnement pédagogique personnalisée
                 
                 </div>
 
