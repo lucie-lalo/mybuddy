@@ -34,7 +34,7 @@ if($_COOKIE['role']=="eleve"){
 		<div class="container px-xl-0">
 			<div class="row justify-content-center align-items-center f-16 mt-10">
 				<div class="mb-50 mb-lg-0 col-lg-3 text-lg-left">
-					<a href="../../index.php?uc=gestion&action=voirAccueilP" class="link img_link">
+					<a href="index.php" class="link img_link">
 						<img src="uploads/sanstitre1.png" alt="Logo" class="img-fluid" data-aos="fade-down" data-aos-delay="250">
 					</a>
 				</div>

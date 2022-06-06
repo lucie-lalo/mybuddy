@@ -115,8 +115,12 @@ if($_COOKIE['role']=="pedagogue"){
 				</span>
 									
 			</label>
+			<a href="../v_justif/index.php" class="btn action-1 sm ml-20">
+				Ajouter un justificatif
+			</a>
+			<br><br>
 			<a href="#" class="btn action-1 sm ml-20">
-				Ajouter
+				VALIDER
 			</a>
 			<div class="text-adaptive bold action-1 f-20 mb-10 mt-40 mr-0 ml-60">
 				MON HISTORIQUE
