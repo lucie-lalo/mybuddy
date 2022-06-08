@@ -46,7 +46,7 @@ if($_COOKIE['role']=="eleve"){
 						cours à transmettre
 					</a>
 					<a href="../../index.php?uc=gestion&action=voirPlanningP" class="link bold action-2 text-uppercase f-18">
-						planning de présence
+						planning D'ABSCENCES
 					</a>
 					<a href="../../index.php?uc=gestion&action=voirDemandeRecuesP" class="link mx-15 bold f-18 mr-75 ml-75 text-uppercase action-2">
 						demandes reçues

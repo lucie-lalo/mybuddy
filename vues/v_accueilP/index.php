@@ -94,7 +94,7 @@ if($_COOKIE['role']=="eleve"){
 							<img src="uploads/sanstitre4.png" srcset="uploads/sanstitre4.png 2x" alt="" class="img-fluid radius10">
 						</a>
 						<a href="../../index.php?uc=gestion&action=voirPlanningP" class="btn action-1 mt-80">
-							PLANNING DE PRÉSENCE
+							PLANNING D'ABSCENCES
 						</a>
 					</div>
 					<div class="col-md-4 col-sm-6" data-aos="fade-down" data-aos-delay="0">
