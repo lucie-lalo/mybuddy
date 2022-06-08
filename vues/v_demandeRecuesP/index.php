@@ -3,6 +3,9 @@ if($_COOKIE['role']=="eleve"){
 	header("Location:../v_accueilE/index.php");
 	exit();
 }
+session_start();
+$id = $_SESSION['id'];
+$pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', '');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,29 +76,6 @@ if($_COOKIE['role']=="eleve"){
 			<div class="container px-xl-0">
 				<div class="row align-items-start no-gutters">
 					<div class="col-lg-3">
-						<div class="pt-45 radius10 noradius_right noborder_right block">
-							<div class="f-22 title bold" data-aos="fade-down" data-aos-delay="0">
-								DATE
-							</div>
-							<div data-aos="fade-down" data-aos-delay="0">
-								<div class="d-inline-block f-58 relative price">
-								</div>
-							</div>
-							<div data-aos="fade-down" data-aos-delay="0">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="0">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="0">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="0">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="0">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="0">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3">
 						<div class="pt-45 noborder_right block">
 							<div class="f-22 title text-uppercase bold" data-aos="fade-down" data-aos-delay="250">
 								nom / prénom
@@ -106,19 +86,22 @@ if($_COOKIE['role']=="eleve"){
 							</div>
 							<div data-aos="fade-down" data-aos-delay="250">
 							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="250">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="250">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="250">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="250">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="250">
-							</div>
+							<?php 
+								$recupIdEleve = $pdo->query("SELECT id_eleve FROM rdv WHERE id_peda = '$id'");
+								while($idEleve = $recupIdEleve->fetch()){
+									$recupNomPrenom = $pdo->query("SELECT identite FROM user WHERE identifiant = '$idEleve[0]'");
+									while($displayName = $recupNomPrenom->fetch()){
+										?>
+										<div class="item" data-aos="fade-down" data-aos-delay="250">
+											<?= $displayName[0];?>
+										</div>
+									<?php
+									}
+								}
+							?>
 						</div>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-2">
 						<div class="pt-45 noborder_right block">
 							<div class="f-22 title bold" data-aos="fade-down" data-aos-delay="500">
 								OBJET
@@ -129,19 +112,19 @@ if($_COOKIE['role']=="eleve"){
 							</div>
 							<div data-aos="fade-down" data-aos-delay="500">
 							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="500">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="500">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="500">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="500">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="500">
-							</div>
+							<?php 
+								$recupSujet = $pdo->query("SELECT sujet FROM rdv WHERE id_peda = '$id'");
+								while($subject = $recupSujet->fetch()){
+									?>
+									<div class="item" data-aos="fade-down" data-aos-delay="250">
+										<?= $subject[0];?>
+									</div>
+								<?php
+							}
+							?>
 						</div>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-5">
 						<div class="pt-45 radius10 noradius_left block mr-0">
 							<div class="f-22 title bold" data-aos="fade-down" data-aos-delay="750">
 								MESSAGE
@@ -152,16 +135,16 @@ if($_COOKIE['role']=="eleve"){
 							</div>
 							<div data-aos="fade-down" data-aos-delay="750">
 							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="750">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="750">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="750">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="750">
-							</div>
-							<div class="item" data-aos="fade-down" data-aos-delay="750">
-							</div>
+							<?php 
+								$recupDetails = $pdo->query("SELECT details FROM rdv WHERE id_peda = '$id'");
+								while($message = $recupDetails->fetch()){
+									?>
+									<div class="item" data-aos="fade-down" data-aos-delay="250">
+										<?= $message[0];?>
+									</div>
+								<?php
+							}
+							?>
 						</div>
 					</div>
 				</div>

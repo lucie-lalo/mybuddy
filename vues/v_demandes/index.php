@@ -9,6 +9,7 @@ require("../../util/class.pdo.php");
 $pdo = PdoMyBuddy::getPdoMyBuddy();
 $id = $_SESSION['id'];
 $valeur=$pdo->coursE($id);	
+$pdoBase = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', '');
 		
 ?>
 
@@ -58,7 +59,7 @@ $valeur=$pdo->coursE($id);
 							MON ESPACE PERSONNEL
 						</a>
 						<a href="../../index.php?uc=gestion&action=voirPlanning" class="link bold f-18 mx-15 pt-25 action-2">
-							MON PLANNING  DE PRESENCE
+							MON PLANNING  D'ABSENCES
 						</a>
 						<a href="../../index.php?uc=gestion&action=voirCours" class="link mx-15 bold f-18 action-2">
 							MES COURS
@@ -93,7 +94,7 @@ $valeur=$pdo->coursE($id);
 								<h2 class="f-40 mb-50 action-1">
 									MES DEMANDES
 								</h2>
-								<form action="../../index.php?uc=transfert&action=transfert" method="post" class="mt-50">
+								<form action="transfert.php" method="post" class="mt-50">
 									<div class="row">
 										<div class="text-adaptive action-2 mt-8 f-30">
 											<b>
@@ -104,36 +105,44 @@ $valeur=$pdo->coursE($id);
 											
 										<select name="demandes" id="demandes"  required="required" class="input mb-50 w-full color-black placeholder-transparent-white text-center text-sm-left border-action-2 focus-action-2">
 											
-											<option value="amménagement">- AMMÉNAGEMENT -</option>
-											<option value="pbCours">- PROBLEMES COURS -</option>											
-											<option value="personnel">- PERSONNEL -</option>
-											<option value="rdv">- RDV -</option>
-											<option value="autre">- autre -</option>
+											<option value="AMMENAGEMENT">- AMMENAGEMENT -</option>
+											<option value="PROBLEMES COURS">- PROBLEMES COURS -</option>											
+											<option value="PERSONNEL">- PERSONNEL -</option>
+											<option value="RENDEZ-VOUS">- RDV -</option>
+											<option value="AUTRE">- autre -</option>
 											
 										</select>
 									
 										</div>
 									</div>
+									<div class="row">
+										<div class="text-adaptive action-2 mt-8 f-30">
+											<b>
+												Pédaogogue concerné
+											</b>
+										</div>
+										<div class="col-sm-6" for="pedagogues" data-aos="fade-down" data-aos-delay="250">
+											
+										<select name="pedagogues" id="pedagogues"  required="required" class="input mb-50 w-full color-black placeholder-transparent-white text-center text-sm-left border-action-2 focus-action-2">
+											<?php 
+												$recupUsers = $pdoBase->query("SELECT * FROM user WHERE role = 'pedagogue'");
+												while($user = $recupUsers->fetch()){
+													?>
+													<option value="<?= $user["identifiant"];?>"> <?= $user["identite"];?> </option>
+													<?php
+												}
+											?>
+										</select>
+									
+										</div>
+									</div>
 									<div data-aos="fade-down" data-aos-delay="250">
-										<textarea name="message" id="message" class="input mb-10 w-full radius10 text-left action-0 placeholder-action-2 focus-action-2 border-action-2">
-										</textarea>
+										<textarea name="message" id="message" class="input mb-10 w-full radius10 text-left action-0 placeholder-action-2 focus-action-2 border-action-2"></textarea>
 										
 									</div>
 									<div class="row justify-content-between">
-										<div class="mb-10 col-sm-4 text-sm-left" data-aos="fade-down" data-aos-delay="100">
-											<!--<label class="input-control input-check action-2 checked-white border-action-2 bold">
-												<div class="mr-10 input-control-box radius6">
-													<i class="fas fa-check input-control-icon f-12 color-main">
-													</i>
-												</div>
-												COPY <span class="input-control-label">
-													Send me a copy
-												</span>
-											</label>-->
-										</div>
 										<div class="col-sm-8 text-sm-right" data-aos="fade-down" data-aos-delay="250">
 											<input type="submit" class="btn action-1">
-												ENVOYER
 											</input>
 										</div>
 									</div>

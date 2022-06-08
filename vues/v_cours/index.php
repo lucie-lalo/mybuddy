@@ -65,7 +65,7 @@ foreach ($valeur as $lavaleur)
 						MON ESPACE PERSONNEL
 					</a>
 					<a href="../../index.php?uc=gestion&action=voirPlanning" class="link mx-15 bold action-2">
-						MON PLANNING DE PRESENCE
+						MON PLANNING D'ABSENCES
 					</a>
 					<a href="../../index.php?uc=gestion&action=voirCours" class="link mx-15 bold action-1">
 						MES COURS
