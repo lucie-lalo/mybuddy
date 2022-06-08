@@ -78,7 +78,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=bd_mybuddy;charset=utf8', 'root', ''
 					<div class="col-lg-3">
 						<div class="pt-45 noborder_right block">
 							<div class="f-22 title text-uppercase bold" data-aos="fade-down" data-aos-delay="250">
-								nom / prénom
+								élève
 							</div>
 							<div data-aos="fade-down" data-aos-delay="250">
 								<div class="d-inline-block f-58 relative price">
